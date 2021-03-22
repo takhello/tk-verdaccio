@@ -10,7 +10,7 @@ import { DEFAULT_PORT } from '../constants';
 
 const logger = require('../logger');
 
-export const resolveConfigPath = function(storageLocation: string, file: string) {
+export const resolveConfigPath = function (storageLocation: string, file: string) {
   return path.resolve(path.dirname(storageLocation), file);
 };
 
@@ -21,9 +21,9 @@ export const resolveConfigPath = function(storageLocation: string, file: string)
  * @param {String} configListen
  * eg:
  *  listen:
-  - localhost:5555
-  - localhost:5557
-  @return {Array}
+ - localhost:5555
+ - localhost:5557
+ @return {Array}
  */
 export function getListListenAddresses(argListen: string, configListen: any): any {
   // command line || config file || default
@@ -38,13 +38,15 @@ export function getListListenAddresses(argListen: string, configListen: any): an
     addresses = [DEFAULT_PORT];
   }
   addresses = addresses
-    .map(function(addr): string {
+    .map(function (addr): string {
       const parsedAddr = parseAddress(addr);
 
       if (!parsedAddr) {
         logger.logger.warn(
           { addr: addr },
-          'invalid address - @{addr}, we expect a port (e.g. "4873"),' + ' host:port (e.g. "localhost:4873") or full url' + ' (e.g. "http://localhost:4873/")'
+          'invalid address - @{addr}, we expect a port (e.g. "4873"),' +
+            ' host:port (e.g. "localhost:4873") or full url' +
+            ' (e.g. "http://localhost:4873/")'
         );
       }
 
